@@ -20,7 +20,7 @@ before_script:
   #- sudo apt-get install -y google-chrome-stable
   #- google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
   -  wget https://chromedriver.storage.googleapis.com/2.46/chromedriver_linux64.zip -P vendor/laravel/dusk/bin  && unzip vendor/laravel/dusk/bin/chromedriver_linux64.zip
-  - ls
+  - ls vendor/laravel/dusk/bin
   - vendor/laravel/dusk/bin/.chromedriver --port=9515 &
   - php artisan serve &
   #- ./vendor/laravel/dusk/bin/chromedriver-linux --port=9515 &
