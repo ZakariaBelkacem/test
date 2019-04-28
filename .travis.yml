@@ -13,8 +13,8 @@ install:
 
 before_script:
  # - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
-  - phantomjs --webdriver=127.0.0.1:9515
   - php artisan serve &
+  - ./vendor/laravel/dusk/bin/chromedriver-linux --port=9515 &
   - sleep 5
 script:
   - php artisan dusk
