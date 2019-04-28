@@ -1,0 +1,18 @@
+language: php
+
+php:
+  - 7.3
+
+addons:
+  chrome: stable
+
+install:
+  - travis_retry composer install --no-interaction --prefer-dist --no-suggest
+  - php artisan key:generate
+
+before_script:
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+  - php artisan serve &
+
+script:
+  - php artisan dusk
