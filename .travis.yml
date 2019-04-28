@@ -7,7 +7,7 @@ addons:
   chrome: stable
 
 install:
-  - travis_retry composer install --no-interaction --prefer-dist --no-suggest
+  - travis_retry composer install --no-interaction --prefer-dist --no-suggest --no-dev
   - php artisan key:generate
 
 before_script:
