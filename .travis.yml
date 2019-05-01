@@ -5,12 +5,13 @@ php:
   - 7.0
 
 install:
-    - cp .env.testing .env          # Create a new .env file
+  - cp .env.testing .env          # Create a new .env file
+  - travis_retry composer self-update
   - travis_retry composer install --no-interaction --prefer-dist --no-suggest
   - php artisan key:generate      # Generate application key
 
 before_script:
-  - phantomjs --webdriver=127.0.0.1:9515 &  # Start PhantomJS driver
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
   - php artisan serve &                     # Start server
   - sleep 5                                 # Give PhantomJS and Artisan time to start
 
