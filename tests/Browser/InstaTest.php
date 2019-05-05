@@ -33,9 +33,11 @@ class InstaTest extends DuskTestCase
                     //submit
                     ->click('button[type="submit"]')
                     //att le popup
-                    ->pause($tempsNavigation)
+                    ->pause(1000000);
+                    
+                   
 
-                    ->assertSee(env('INSTALOGIN', 'rasda_tv'))
+                    $browser->assertSee(env('INSTALOGIN', 'rasda_tv'))
 
                     //click sur lepopup
                     //->click('button[tabindex="0"]')
