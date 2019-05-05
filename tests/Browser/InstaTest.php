@@ -62,7 +62,7 @@ class InstaTest extends DuskTestCase
                             $browser->assertSee('S’abonner')
                             ->pause($tempsEntreChaqueLike)
                             ->press('S’abonner');
-                            //bouton se désabo
+                            //bouton se désabos
                            /* if($browser->element('button[tabindex="0"]')){
                                 $browser->click('button[tabindex="0"]')->pause(10000);
                             }*/
