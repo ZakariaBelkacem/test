@@ -33,7 +33,7 @@ class InstaTest extends DuskTestCase
                     //submit
                     ->click('button[type="submit"]')
                     //att le popup
-                    ->pause(1000000);
+                    ->pause($tempsNavigation);
                     
                    
 
