@@ -58,7 +58,7 @@ class InstaTest extends DuskTestCase
                     //att que le bouton s'abonner s'affiche
                     for ($i=0; $i <$nbAbonnemen; $i++) { 
                         $tempsEntreChaqueLike=rand(10000,20000);
-
+                        echo "ok";
                         try {
 
                             $browser->assertSee('S’abonner')
