@@ -69,7 +69,7 @@ class InstaTest extends DuskTestCase
                                 $browser->click('button[tabindex="0"]')->pause(10000);
                             }*/
                         } catch (Exception $th) {
-                            //throw $th;
+                            //throw $th;sqds
                         }
 
                     }
