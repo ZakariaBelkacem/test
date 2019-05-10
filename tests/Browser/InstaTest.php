@@ -17,7 +17,7 @@ class InstaTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $tempsNavigation=rand(5000,10000);
-            $nbAbonnemen=200;
+            $nbAbonnemen=100;
             $comptesInsta = array('xsqueezie','yvick','lebledartofficiel1','normanthavaud','tiboinshape');
             $compteInsta= $comptesInsta[rand(0,count($comptesInsta)-1)];
                     //se rend à la page login
