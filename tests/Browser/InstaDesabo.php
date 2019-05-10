@@ -38,44 +38,30 @@ class InstaDesabo extends DuskTestCase
                 
                
 
-                $browser->assertSee(env('INSTALOGIN', 'rasda_tv'))
+                $browser->assertSee(env('INSTALOGIN', 'rasa_tv'))
                 //att pour la recherche
                 ->pause($tempsNavigation)
                 //va à la page du profil pour se désabo
-                ->visit('https://www.instagram.com/'.env('INSTALOGIN', 'rasda_tv').'/?hl=fr')
+                ->visit('https://www.instagram.com/'.env('INSTALOGIN', 'rasa_tv').'/?hl=fr')
                 ->pause($tempsNavigation)
                 //si on voit le lien abonné on clik desuus
                 ->assertSee("abonnés")
                  //clieque sur le lien abonné
-                 ->click('a[href="/'.env('INSTALOGIN', 'rasda_tv').'/followers/"]')
+                 ->click('a[href="/'.env('INSTALOGIN', 'rasa_tv').'/followers/"]')
                  ->pause($tempsNavigation);
 
+                //$res= $browser->driver->executeScript('$( "div:contains("John")" )'); 
+                 
                  //att que le bouton s'abonner s'affiche
                  for ($i=0; $i <$nbAbonnemen; $i++) { 
                     $tempsEntreChaqueLike=rand(10000,20000);
-                   //si on liker 5fois on rafraichie la page
-                    if($i%5==0){
-                    //raffraichie la page
-                    $browser->driver->executeScript('document.location.reload(true);'); 
-                    //pause
-                      $browser->pause($tempsNavigation)
-                         //clieque sur le lien abonné
-                      ->click('a[href="/'.env('INSTALOGIN', 'rasda_tv').'/followers/"]')
-                        ->pause($tempsNavigation);
-                    }
+
                     //$browser->assertSee('Abonné(e)');
-
                     //si le boutton aboonéé est présent on clique
-                    if ($browser->element('#selector')){
-                        $browser->pause($tempsEntreChaqueLike)
-                        ->press('Abonné(e)')
-                        ->pause($tempsEntreChaqueLike)
-                        ->press('Se désabonner');
-                    }
-
-
-                   
-     
+                    $browser->pause($tempsEntreChaqueLike)
+                    ->press('Abonné(e)')
+                    ->pause($tempsEntreChaqueLike)
+                    ->press('Se désabonner');
 
                 }
         });
