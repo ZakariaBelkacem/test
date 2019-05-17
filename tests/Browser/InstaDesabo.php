@@ -18,7 +18,7 @@ class InstaDesabo extends DuskTestCase
         $this->browse(function (Browser $browser) {
            
         $tempsNavigation=rand(5000,10000);
-        $nbAbonnemen=100;
+        $nbAbonnemen=200;
         //$comptesInsta = array('xsqueezie','yvick','lebledartofficiel1','normanthavaud','tiboinshape');
         //$compteInsta= $comptesInsta[rand(0,count($comptesInsta)-1)];
                 //se rend à la page login
@@ -54,7 +54,7 @@ class InstaDesabo extends DuskTestCase
                  
                  //att que le bouton s'abonner s'affiche
                  for ($i=0; $i <$nbAbonnemen; $i++) { 
-                    $tempsEntreChaqueLike=rand(10000,20000);
+                    $tempsEntreChaqueLike=rand(5000,10000);
 
                     //$browser->assertSee('Abonné(e)');
                     //si le boutton aboonéé est présent on clique
