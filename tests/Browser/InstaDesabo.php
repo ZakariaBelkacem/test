@@ -5,7 +5,7 @@ namespace Tests\Browser;
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-
+use Facebook\WebDriver\WebDriverBy;
 class InstaDesabo extends DuskTestCase
 {
     /**
@@ -17,8 +17,8 @@ class InstaDesabo extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
            
-        $tempsNavigation=rand(5000,10000);
-        $nbAbonnemen=200;
+        $tempsNavigation=rand(10000,15000);
+        $nbAbonnemen=100;
         //$comptesInsta = array('xsqueezie','yvick','lebledartofficiel1','normanthavaud','tiboinshape');
         //$compteInsta= $comptesInsta[rand(0,count($comptesInsta)-1)];
                 //se rend à la page login
@@ -38,30 +38,64 @@ class InstaDesabo extends DuskTestCase
                 
                
 
-                $browser->assertSee(env('INSTALOGIN', 'rasa_tv'))
+                $browser->assertSee("Votre Story")
                 //att pour la recherche
                 ->pause($tempsNavigation)
                 //va à la page du profil pour se désabo
-                ->visit('https://www.instagram.com/'.env('INSTALOGIN', 'rasa_tv').'/?hl=fr')
+                ->visit('https://www.instagram.com/'.env('INSTALOGIN', 'rasda_tv').'/?hl=fr')
                 ->pause($tempsNavigation)
                 //si on voit le lien abonné on clik desuus
                 ->assertSee("abonnés")
                  //clieque sur le lien abonné
-                 ->click('a[href="/'.env('INSTALOGIN', 'rasa_tv').'/followers/"]')
+                 ->click('a[href="/'.env('INSTALOGIN', 'rasda_tv').'/followers/"]')
                  ->pause($tempsNavigation);
 
-                //$res= $browser->driver->executeScript('$( "div:contains("John")" )'); 
-                 
                  //att que le bouton s'abonner s'affiche
+                 $x=500;
+
                  for ($i=0; $i <$nbAbonnemen; $i++) { 
                     $tempsEntreChaqueLike=rand(5000,10000);
-
+                   //si on liker 5fois on rafraichie la page
+                 /*   if($i%5==0){
+                    //raffraichie la page
+                    //$browser->driver->executeScript('document.location.reload(true);'); 
+                    //pause
+                      $browser->pause($tempsNavigation)
+                         //clieque sur le lien abonné
+                      ->click('a[href="/'.env('INSTALOGIN', 'rasda_tv').'/followers/"]')
+                        ->pause($tempsNavigation);
+                    }*/
                     //$browser->assertSee('Abonné(e)');
+
                     //si le boutton aboonéé est présent on clique
-                    $browser->pause($tempsEntreChaqueLike)
-                    ->press('Abonné(e)')
-                    ->pause($tempsEntreChaqueLike)
-                    ->press('Se désabonner');
+                   /* if ($browser->clickLink('click me', 'button')){
+                        $browser->pause($tempsEntreChaqueLike)
+                        ->press('Abonné(e)')
+                        ->pause($tempsEntreChaqueLike)
+                        ->press('Se désabonner');
+                    }else {*/
+                        //$browser->driver->executeScript('window.scrollTo(0, 10);');
+
+                            try {
+                                $browser->pause($tempsEntreChaqueLike)
+                                ->press('Abonné(e)')
+                                ->pause($tempsEntreChaqueLike)
+                                ->press('Se désabonner');
+                            } catch (\Throwable $th) {
+                                $x+=1000;
+                                $browser->driver->executeScript('window.scrollTo(0,'.$x.');');
+                                $browser->pause(30000);
+                            }
+                        
+                       
+                        
+                     /*   if ($element->isDisplayed()) {
+                            $browser->driver->executeScript('console.log("ok")'); 
+                        }else {
+                            $browser->driver->executeScript('console.log("pas ok")'); 
+                            $browser->driver->executeScript('window.scrollTo(0, 10);'); 
+                        }*/
+                   // }
 
                 }
         });
