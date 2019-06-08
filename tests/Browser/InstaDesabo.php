@@ -51,7 +51,7 @@ class InstaDesabo extends DuskTestCase
                  ->pause($tempsNavigation);
 
                  //att que le bouton s'abonner s'affiche
-                 $x=500;
+                 $x=2000;
 
                  for ($i=0; $i <$nbAbonnemen; $i++) { 
                     $tempsEntreChaqueLike=rand(5000,10000);
@@ -82,7 +82,7 @@ class InstaDesabo extends DuskTestCase
                                 ->pause($tempsEntreChaqueLike)
                                 ->press('Se désabonner');
                             } catch (\Throwable $th) {
-                                $x+=1000;
+                                $x+=2000;
                                 $browser->driver->executeScript('window.scrollTo(0,'.$x.');');
                                 $browser->pause(30000);
                             }
