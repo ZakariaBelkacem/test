@@ -37,7 +37,7 @@ class InstaTest extends DuskTestCase
                     
                    
 
-                    $browser->assertSee(env('INSTALOGIN', 'rasda_tv'))
+                    $browser->assertSee("Votre Story")
 
                     //click sur lepopup
                     //->click('button[tabindex="0"]')
@@ -54,7 +54,8 @@ class InstaTest extends DuskTestCase
                     ->pause($tempsNavigation)
                     ->assertSee("Abonnés");
 
-                    
+                    //att que le bouton s'abonner s'affiche
+                    $x=100;
                     //att que le bouton s'abonner s'affiche
                     for ($i=0; $i <$nbAbonnemen; $i++) { 
                         $tempsEntreChaqueLike=rand(5000,10000);
@@ -68,7 +69,11 @@ class InstaTest extends DuskTestCase
                            /* if($browser->element('button[tabindex="0"]')){
                                 $browser->click('button[tabindex="0"]')->pause(10000);
                             }*/
-                        } catch (Exception $th) {
+                        } catch (\Throwable $th) {
+                            $x+=100;
+                            $browser->driver->executeScript('window.scrollTo(0,'.$x.');');
+                            $browser->pause(10000);
+
                             //throw $th;sqds
                         }
 

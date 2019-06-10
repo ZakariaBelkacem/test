@@ -84,7 +84,7 @@ class InstaDesabo extends DuskTestCase
                             } catch (\Throwable $th) {
                                 $x+=2000;
                                 $browser->driver->executeScript('window.scrollTo(0,'.$x.');');
-                                $browser->pause(30000);
+                                $browser->pause(10000);
                             }
                         
                        
