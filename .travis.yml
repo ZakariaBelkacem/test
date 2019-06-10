@@ -20,4 +20,4 @@ before_script:
   - php artisan serve &
 
 script:
-  - travis_wait 49 php artisan dusk tests/Browser/InstaDesabo.php
+  - travis_wait 49 php artisan dusk tests/Browser/InstaTest.php
