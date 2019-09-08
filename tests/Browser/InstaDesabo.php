@@ -55,27 +55,6 @@ class InstaDesabo extends DuskTestCase
 
                  for ($i=0; $i <$nbAbonnemen; $i++) { 
                     $tempsEntreChaqueLike=rand(1000,2000);
-                   //si on liker 5fois on rafraichie la page
-                 /*   if($i%5==0){
-                    //raffraichie la page
-                    //$browser->driver->executeScript('document.location.reload(true);'); 
-                    //pause
-                      $browser->pause($tempsNavigation)
-                         //clieque sur le lien abonné
-                      ->click('a[href="/'.env('INSTALOGIN', 'rasda_tv').'/followers/"]')
-                        ->pause($tempsNavigation);
-                    }*/
-                    //$browser->assertSee('Abonné(e)');
-
-                    //si le boutton aboonéé est présent on clique
-                   /* if ($browser->clickLink('click me', 'button')){
-                        $browser->pause($tempsEntreChaqueLike)
-                        ->press('Abonné(e)')
-                        ->pause($tempsEntreChaqueLike)
-                        ->press('Se désabonner');
-                    }else {*/
-                        //$browser->driver->executeScript('window.scrollTo(0, 10);');
-
                             try {
                                 $browser//->pause($tempsEntreChaqueLike)
                                 ->press('Abonné(e)')
@@ -89,13 +68,7 @@ class InstaDesabo extends DuskTestCase
                         
                        
                         
-                     /*   if ($element->isDisplayed()) {
-                            $browser->driver->executeScript('console.log("ok")'); 
-                        }else {
-                            $browser->driver->executeScript('console.log("pas ok")'); 
-                            $browser->driver->executeScript('window.scrollTo(0, 10);'); 
-                        }*/
-                   // }
+                
 
                 }
         });
