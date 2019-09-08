@@ -42,23 +42,27 @@ abstract class DuskTestCase extends BaseTestCase
             'http://localhost:9515', DesiredCapabilities::chrome()->setCapability(
                 ChromeOptions::CAPABILITY, $options
             )
-        );*/
+        );
+         return RemoteWebDriver::create(
+            'http://selenium:4444/wd/hub', $options->toCapabilities()
+         );*/
 
         $ua = 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1';
         $capabilities = DesiredCapabilities::chrome();
         //$options = new ChromeOptions;
         $options = (new ChromeOptions)->addArguments([
             '--disable-gpu',
-            '--headless',
-            '--window-size=414,736',
+           // '--headless',
+            '--window-size=375,812',
             '--no-sandbox',
             '--verbose'
         ]);
         $options->setExperimentalOption('mobileEmulation', ['userAgent' => $ua]);
     
         return RemoteWebDriver::create(
-            'http://localhost:9515', $options->toCapabilities()
+            'http://localhost:9515', DesiredCapabilities::chrome()->setCapability(
+                ChromeOptions::CAPABILITY, $options
+            )
         );
-
     }
 }

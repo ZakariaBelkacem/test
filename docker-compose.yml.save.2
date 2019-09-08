@@ -1,0 +1,51 @@
+version: '3' 
+services: #les different service du container
+  app: #nom du service
+    build: #demande de frabriquer l'image
+      context: . #utilise le docker file pour fabriquer limage
+      dockerfile: Dockerfile
+    image: digitalocean.com/php #image a demarrer dans le  container     
+    container_name: app #le nom du conteneur
+    restart: unless-stopped #redemérre le container tant qu'il est pas stpper
+    tty: true #terminal true
+    environment: #variable d'environnement
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+      INSTALOGIN: rasa_tv
+      INSTAMDP: cadamoi42
+    working_dir: /var/www #répertoire de travail du conteneur
+    volumes:
+      - ./:/var/www #partage la racine du dosier dans le container a /var/www
+      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini   #partage la config asus php au conteneur
+    networks: #nom du réseau
+      - app-network
+  selenium:3.141.59-titanium    container_name: boiler_selenium-standalone-debug
+    image: selenium/standalone-chrome-debug:latest
+    ports:
+      - "4444:4444"
+      - "59000:5900" ## VNC default password is "secret"
+    networks:
+      - app-network
+  #Nginx Service
+  webserver:
+    image: nginx:alpine
+    container_name: webserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./:/var/www  #partage la racine du dosier dans le container a /var/www
+      - ./nginx/conf.d/:/etc/nginx/conf.d/ #paratage la config de nginx 
+    networks:
+      - app-network
+
+#Docker Networks
+networks:
+  app-network:
+    driver: bridge # connecte les different service entre par bridge
+#Volumes
+volumes:
+  dbdata:
+    driver: local

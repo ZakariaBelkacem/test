@@ -25,18 +25,26 @@ class InstaTest extends DuskTestCase
                     //att input username
                     //att input password
                     //att button submit
-                    ->pause($tempsNavigation)
                     //entre le pseudo
+                    ->pause($tempsNavigation)
+
+                    ->assertSee("Instagram")
+
                     ->type('username', env('INSTALOGIN', 'rien'))
                     //entre le mdp
                     ->type('password',  env('INSTAMDP', 'rien'))
+                    ->pause($tempsNavigation)
                     //submit
                     ->click('button[type="submit"]')
                     //att le popup
                     ->pause($tempsNavigation);
                     
-                   
 
+          
+                    $browser->press('Enregistrer les identifiants')->pause($tempsNavigation);
+                  
+                   
+                  
                     $browser->assertSee("Votre Story")
 
                     //click sur lepopup

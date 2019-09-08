@@ -36,8 +36,8 @@ class InstaDesabo extends DuskTestCase
                 //att le popup
                 ->pause($tempsNavigation);
                 
+                $browser->press('Enregistrer les identifiants')->pause($tempsNavigation);
                
-
                 $browser->assertSee("Votre Story")
                 //att pour la recherche
                 ->pause($tempsNavigation)
@@ -47,14 +47,14 @@ class InstaDesabo extends DuskTestCase
                 //si on voit le lien abonné on clik desuus
                 ->assertSee("abonnés")
                  //clieque sur le lien abonné
-                 ->click('a[href="/'.env('INSTALOGIN', 'rasda_tv').'/followers/"]')
+                 ->click('a[href="/'.env('INSTALOGIN', 'rasda_tv').'/following/"]')
                  ->pause($tempsNavigation);
 
                  //att que le bouton s'abonner s'affiche
-                 $x=2000;
+                 $x=25;
 
                  for ($i=0; $i <$nbAbonnemen; $i++) { 
-                    $tempsEntreChaqueLike=rand(5000,10000);
+                    $tempsEntreChaqueLike=rand(1000,2000);
                    //si on liker 5fois on rafraichie la page
                  /*   if($i%5==0){
                     //raffraichie la page
@@ -77,13 +77,13 @@ class InstaDesabo extends DuskTestCase
                         //$browser->driver->executeScript('window.scrollTo(0, 10);');
 
                             try {
-                                $browser->pause($tempsEntreChaqueLike)
+                                $browser//->pause($tempsEntreChaqueLike)
                                 ->press('Abonné(e)')
                                 ->pause($tempsEntreChaqueLike)
                                 ->press('Se désabonner');
                             } catch (\Throwable $th) {
-                                $x+=2000;
                                 $browser->driver->executeScript('window.scrollTo(0,'.$x.');');
+                                $x+=25;
                                 $browser->pause(10000);
                             }
                         
